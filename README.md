@@ -117,7 +117,7 @@ chrF signature `nrefs:1|case:mixed|eff:yes|nc:6|nw:0|space:no|version:2.6.0`.
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | Basic Transformer | encoder–decoder | trained from scratch (50k pairs, 20 epochs) | 5.14 | 24.86 | 9.4 M | 9.4 M | 10.8 min | 5.7 s | 11 |
 | mT5-small | encoder–decoder | full fine-tuning (50k pairs, 3 epochs) | 6.69 | 26.28 | 300.2 M | 300.2 M | 62.1 min | 19.2 s | 38 |
-| LLaMA 3.2 1B Instruct | decoder-only | 3-shot prompting | 10.22 | 34.14 | 1,235.8 M | 0 | none | 165.2 s | 330 |
+| LLaMA 3.2 1B Instruct | decoder-only | 3-shot prompting | 10.22 | 34.14 | 1,235.8 M | 0 | none | 164.9 s | 330 |
 | **Gemma 3 1B Instruct** | decoder-only | 3-shot prompting | **13.52** | **38.88** | 999.9 M | 0 | none | 110.4 s | 221 |
 
 ![quality](results/plots/quality.png)
@@ -183,6 +183,7 @@ Each cell is BLEU / chrF.
 |---|---|---|---|---|---|
 | Transformer | 5.85 / 25.23 | 4.51 / 24.41 | 3.57 / 23.23 | 1.13 / 20.43 | 0.15 / 14.15 |
 | mT5-small | 6.69 / 27.00 | 6.13 / 26.14 | 2.97 / 23.90 | 2.79 / 21.43 | 0.64 / 15.88 |
+| LLaMA 3.2 1B | 10.19 / 33.41 | 9.71 / 32.57 | 7.29 / 30.12 | 3.86 / 22.67 | 0.02 / 0.82 |
 | Gemma 3 1B | 11.95 / 37.90 | 11.63 / 37.12 | 11.51 / 37.05 | 10.12 / 36.19 | 6.36 / 29.34 |
 
 For every model quality is highest with greedy decoding and falls as the temperature rises:
@@ -190,8 +191,11 @@ translation has essentially one correct meaning, so sampling only adds the chanc
 a wrong word, and one wrong token early on derails the rest of the sentence. The models differ
 in **how fast** they degrade. The small, weakly trained models have flat output distributions,
 so T = 0.7 already removes about half of their BLEU, and at T = 1.5 they produce near-random
-text. Gemma's distribution is much sharper: up to T = 0.7 it loses less than half a BLEU
-point, and only at T = 1.5 does it break down. Greedy or low temperature (T ≤ 0.3) is
+text. LLaMA holds up at T = 0.3 but loses 30 % of its BLEU at T = 0.7 and collapses completely at
+T = 1.5 (chrF 0.8): with its 128k-token vocabulary and 2.5 tokens per Hindi word, a high
+temperature quickly samples tokens from other scripts and languages, and the output becomes
+unreadable. Gemma's distribution is much sharper: up to T = 0.7 it loses less than half a
+BLEU point, and even at T = 1.5 it keeps chrF 29. Greedy or low temperature (T ≤ 0.3) is
 therefore the right setting for translation; higher temperatures are only useful to produce
 *alternative* translations for a human to choose from. `results/temperature_examples.md`
 shows the same sentences at every temperature.
