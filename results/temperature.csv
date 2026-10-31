@@ -1,0 +1,16 @@
+System,T,BLEU,chrF
+Transformer (scratch),0.0,5.85,25.23
+Transformer (scratch),0.3,4.51,24.41
+Transformer (scratch),0.7,3.57,23.23
+Transformer (scratch),1.0,1.13,20.43
+Transformer (scratch),1.5,0.15,14.15
+mT5-small (FT),0.0,6.69,27.0
+mT5-small (FT),0.3,6.13,26.14
+mT5-small (FT),0.7,2.97,23.9
+mT5-small (FT),1.0,2.79,21.43
+mT5-small (FT),1.5,0.64,15.88
+Gemma-3-1B (3-shot),0.0,11.95,37.9
+Gemma-3-1B (3-shot),0.3,11.63,37.12
+Gemma-3-1B (3-shot),0.7,11.51,37.05
+Gemma-3-1B (3-shot),1.0,10.12,36.19
+Gemma-3-1B (3-shot),1.5,6.36,29.34

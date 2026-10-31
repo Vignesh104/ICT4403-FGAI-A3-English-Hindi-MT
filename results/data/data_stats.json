@@ -1,0 +1,23 @@
+{
+ "raw": {
+  "train": 1659083,
+  "validation": 520,
+  "test": 2507
+ },
+ "after_cleaning": {
+  "train": 769461,
+  "validation": 502,
+  "test": 2400
+ },
+ "used": {
+  "train": 50000,
+  "valid": 502,
+  "test": 500
+ },
+ "train_en_words_mean": 15.61968,
+ "train_hi_words_mean": 16.73248,
+ "test_en_words_mean": 18.738,
+ "test_hi_words_mean": 21.798,
+ "train_en_vocab": 67809,
+ "train_hi_vocab": 71516
+}

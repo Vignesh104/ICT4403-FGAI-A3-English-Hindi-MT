@@ -1,0 +1,5 @@
+System,number_mismatch,untranslated,over_generation,under_generation,repetition,empty
+Transformer (scratch),14.6,0.0,0.6,0.4,7.4,0.0
+mT5-small (FT),8.2,0.0,3.2,0.2,11.4,0.0
+LLaMA-3.2-1B (3-shot),3.8,0.2,1.0,0.2,1.0,0.0
+Gemma-3-1B (3-shot),3.8,1.6,0.0,0.2,0.0,0.0
